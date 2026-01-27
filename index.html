@@ -431,40 +431,42 @@ border-radius: var(--radius);
 box-shadow: var(--shadow);
 border: 1px solid var(--light-gray);
 }
-.timeline {
-margin-top: 2rem;
-position: relative;
-padding-left: 30px;
+.mvv-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 2rem;
+margin-top: 2.5rem;
 }
-.timeline::before {
-content: "";
-position: absolute;
-left: 10px;
-top: 0;
-bottom: 0;
-width: 2px;
-background: var(--primary);
+.mvv-card {
+background: white;
+border: 1px solid var(--light-gray);
+border-radius: var(--radius);
+padding: 2rem;
+box-shadow: var(--shadow);
+transition: var(--transition);
 }
-.timeline-item {
+.mvv-card:hover {
+transform: translateY(-5px);
+box-shadow: var(--shadow-hover);
+border-color: var(--primary);
+}
+.mvv-icon {
+width: 60px;
+height: 60px;
+background: rgba(37, 99, 235, 0.1);
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
 margin-bottom: 1.5rem;
-position: relative;
-}
-.timeline-item::before {
-content: "";
-position: absolute;
-left: -35px;
-top: 5px;
-width: 20px;
-height: 20px;
-border-radius: 50%;
-background: var(--primary);
-border: 3px solid white;
-box-shadow: 0 0 0 2px var(--primary);
-}
-.timeline-year {
-font-weight: 700;
+font-size: 1.8rem;
 color: var(--primary);
-margin-bottom: 0.5rem;
+border: 1px solid rgba(37, 99, 235, 0.2);
+}
+.mvv-card h3 {
+margin-bottom: 1rem;
+font-size: 1.4rem;
+color: var(--accent);
 font-family: 'Poppins', sans-serif;
 }
 /* Contacto */
@@ -965,24 +967,33 @@ EMPORIUM IA
 <div class="container">
 <div class="section-title">
 <h2>Sobre Nosotros</h2>
-<p>Expertos en automatización con enfoque en resultados reales</p>
+<p>Una agencia joven, cercana y enfocada en resultados reales para pymes</p>
 </div>
 <div class="about-content">
 <div class="about-text">
-<p>En EMPORIUM IA, somos una empresa especializada en implementar soluciones de inteligencia artificial para empresas que buscan optimizar sus procesos y aumentar su competitividad. Nuestro enfoque se centra en entender tus necesidades específicas y ofrecer soluciones prácticas con impacto medible.</p>
-<p>Nuestro equipo está formado por profesionales con amplia experiencia en tecnología, automatización y transformación digital. Trabajamos con metodologías ágiles para garantizar entregas rápidas y resultados tangibles.</p>
-<div class="timeline">
-<div class="timeline-item">
-<div class="timeline-year">2023</div>
-<p>Fundación de EMPORIUM IA con enfoque en automatización accesible para pymes</p>
+<p><strong>En Emporium IA somos un equipo apasionado por la tecnología y su aplicación práctica en el mundo real.</strong> Nos especializamos en ayudar a pymes a adoptar la inteligencia artificial de forma gradual, segura y rentable.</p>
+<p><strong>No somos una consultora tradicional ni una fábrica de software.</strong> Somos partners tecnológicos que crecen contigo, entendiendo tus limitaciones y oportunidades como una pyme.</p>
+<div class="mvv-grid">
+<div class="mvv-card">
+<div class="mvv-icon">
+<i class="fas fa-bullseye"></i>
 </div>
-<div class="timeline-item">
-<div class="timeline-year">2024</div>
-<p>Lanzamiento de nuestra plataforma de asistentes virtuales con integración nativa en WhatsApp Business</p>
+<h3>Misión</h3>
+<p>Empoderar a las pymes con tecnología de IA accesible, ayudándolas a automatizar procesos, reducir costos y aumentar su competitividad en el mercado.</p>
 </div>
-<div class="timeline-item">
-<div class="timeline-year">2025</div>
-<p>Expansión a nuevos sectores y desarrollo de soluciones de marketing autónomo</p>
+<div class="mvv-card">
+<div class="mvv-icon">
+<i class="fas fa-eye"></i>
+</div>
+<h3>Visión</h3>
+<p>Ser el partner tecnológico de referencia para pymes que buscan transformar digitalmente sus operaciones con soluciones de IA prácticas y rentables.</p>
+</div>
+<div class="mvv-card">
+<div class="mvv-icon">
+<i class="fas fa-heart"></i>
+</div>
+<h3>Valores</h3>
+<p>Transparencia, cercanía, innovación responsable y compromiso con el éxito real de nuestros clientes. Crecemos cuando tú creces.</p>
 </div>
 </div>
 </div>
@@ -1003,20 +1014,11 @@ EMPORIUM IA
 <div class="contact-info">
 <div class="contact-item">
 <div class="contact-icon">
-<i class="fas fa-map-marker-alt"></i>
-</div>
-<div>
-<h3>Ubicación</h3>
-<p>Madrid, España</p>
-</div>
-</div>
-<div class="contact-item">
-<div class="contact-icon">
 <i class="fas fa-phone"></i>
 </div>
 <div>
 <h3>Teléfono</h3>
-<p>+34 912 345 678</p>
+<p>+34 604 380 891</p>
 </div>
 </div>
 <div class="contact-item">
@@ -1112,7 +1114,7 @@ EMPORIUM IA
 </footer>
 <!-- Barra sticky inferior (móvil) -->
 <div class="sticky-bar">
-<a href="https://wa.me/34600000000" class="btn-whatsapp">
+<a href="https://wa.me/34604380891" class="btn-whatsapp">
 <i class="fab fa-whatsapp"></i> WhatsApp
 </a>
 <a href="#contacto" class="btn btn-primary">
