@@ -333,10 +333,16 @@ font-size: 1.5rem;
 color: var(--accent);
 }
 /* Sectores */
-.sectors-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+.sectors-container {
+display: flex;
+flex-direction: column;
+gap: 2.5rem;
+}
+.sectors-row {
+display: flex;
+justify-content: center;
 gap: 2rem;
+flex-wrap: wrap;
 }
 .sector-card {
 background: white;
@@ -346,6 +352,8 @@ padding: 2rem;
 box-shadow: var(--shadow);
 transition: var(--transition);
 text-align: center;
+min-width: 280px;
+max-width: 350px;
 }
 .sector-card:hover {
 transform: translateY(-5px);
@@ -601,27 +609,6 @@ font-family: 'Inter', sans-serif;
 color: var(--primary);
 padding-left: 5px;
 }
-.social-links {
-display: flex;
-gap: 1rem;
-margin-top: 1.5rem;
-}
-.social-links a {
-display: flex;
-align-items: center;
-justify-content: center;
-width: 40px;
-height: 40px;
-border-radius: 50%;
-background: rgba(255, 255, 255, 0.1);
-color: white;
-transition: var(--transition);
-border: 1px solid rgba(255, 255, 255, 0.2);
-}
-.social-links a:hover {
-background: var(--primary);
-transform: translateY(-2px);
-}
 .copyright {
 text-align: center;
 padding-top: 2rem;
@@ -744,6 +731,9 @@ display: flex;
 .mvv-grid {
 grid-template-columns: repeat(2, 1fr);
 }
+.sectors-row {
+justify-content: center;
+}
 }
 @media (max-width: 768px) {
 .mobile-toggle {
@@ -784,6 +774,14 @@ line-height: 1.6;
 }
 .mvv-card {
 min-height: auto;
+}
+.sectors-row {
+flex-direction: column;
+align-items: center;
+}
+.sector-card {
+width: 100%;
+max-width: 400px;
 }
 }
 @media (max-width: 480px) {
@@ -905,7 +903,8 @@ EMPORIUM IA
 <h2>Sectores en los que trabajamos</h2>
 <p>Soluciones adaptadas a las necesidades de cada industria</p>
 </div>
-<div class="sectors-grid">
+<div class="sectors-container">
+<div class="sectors-row">
 <div class="sector-card">
 <div class="sector-icon">
 <i class="fas fa-heartbeat"></i>
@@ -927,6 +926,8 @@ EMPORIUM IA
 <h3>Inmobiliarias</h3>
 <p>Cualificación de leads, gestión de propiedades y atención a clientes potenciales con IA.</p>
 </div>
+</div>
+<div class="sectors-row">
 <div class="sector-card">
 <div class="sector-icon">
 <i class="fas fa-graduation-cap"></i>
@@ -940,6 +941,7 @@ EMPORIUM IA
 </div>
 <h3>Tiendas Online</h3>
 <p>Chatbots de atención al cliente, recomendaciones personalizadas y gestión de pedidos.</p>
+</div>
 </div>
 </div>
 </div>
@@ -1098,11 +1100,6 @@ EMPORIUM IA
 EMPORIUM IA
 </div>
 <p>Soluciones de automatización e inteligencia artificial para empresas que buscan innovar con tecnología robusta y resultados medibles.</p>
-<div class="social-links">
-<a href="#"><i class="fab fa-linkedin-in"></i></a>
-<a href="#"><i class="fab fa-twitter"></i></a>
-<a href="#"><i class="fab fa-instagram"></i></a>
-</div>
 </div>
 <div class="footer-links">
 <h3>Servicios</h3>
