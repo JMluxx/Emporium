@@ -293,10 +293,16 @@ background: var(--primary);
 transition: width 0.5s ease;
 }
 /* Servicios */
-.services-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+.services-container {
+display: flex;
+flex-direction: column;
 gap: 2.5rem;
+}
+.services-row {
+display: flex;
+justify-content: center;
+gap: 2rem;
+flex-wrap: wrap;
 }
 .service-card {
 background: white;
@@ -306,8 +312,8 @@ padding: 2.5rem;
 box-shadow: var(--shadow);
 transition: var(--transition);
 text-align: center;
-position: relative;
-overflow: hidden;
+min-width: 280px;
+max-width: 350px;
 }
 .service-card:hover {
 transform: translateY(-5px);
@@ -331,6 +337,9 @@ border: 1px solid rgba(37, 99, 235, 0.2);
 margin-bottom: 1rem;
 font-size: 1.5rem;
 color: var(--accent);
+}
+.service-card .btn {
+margin-top: 1rem;
 }
 /* Sectores */
 .sectors-container {
@@ -493,6 +502,60 @@ flex-grow: 1;
 display: flex;
 align-items: center;
 justify-content: center;
+}
+/* FAQ Section */
+.faq-section {
+background: #f8fafc;
+}
+.faq-container {
+max-width: 900px;
+margin: 0 auto;
+}
+.faq-item {
+background: white;
+border: 1px solid var(--light-gray);
+border-radius: var(--radius);
+margin-bottom: 1.5rem;
+box-shadow: var(--shadow);
+overflow: hidden;
+}
+.faq-question {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1.5rem 2rem;
+cursor: pointer;
+font-weight: 600;
+font-size: 1.1rem;
+color: var(--accent);
+font-family: 'Poppins', sans-serif;
+transition: var(--transition);
+background: rgba(37, 99, 235, 0.05);
+}
+.faq-question:hover {
+background: rgba(37, 99, 235, 0.1);
+}
+.faq-question i {
+transition: transform 0.3s ease;
+font-size: 1.2rem;
+}
+.faq-question.active i {
+transform: rotate(180deg);
+}
+.faq-answer {
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.3s ease, padding 0.3s ease;
+background: white;
+}
+.faq-answer.show {
+max-height: 500px;
+padding: 1.5rem 2rem;
+}
+.faq-answer p {
+margin: 0;
+color: var(--dark-gray);
+line-height: 1.8;
 }
 /* Contacto */
 .contact-container {
@@ -731,7 +794,8 @@ display: flex;
 .mvv-grid {
 grid-template-columns: repeat(2, 1fr);
 }
-.sectors-row {
+.sectors-row,
+.services-row {
 justify-content: center;
 }
 }
@@ -775,13 +839,18 @@ line-height: 1.6;
 .mvv-card {
 min-height: auto;
 }
-.sectors-row {
+.sectors-row,
+.services-row {
 flex-direction: column;
 align-items: center;
 }
-.sector-card {
+.sector-card,
+.service-card {
 width: 100%;
 max-width: 400px;
+}
+.faq-answer {
+padding: 1rem;
 }
 }
 @media (max-width: 480px) {
@@ -828,6 +897,7 @@ EMPORIUM IA
 <li><a href="#sectores">Sectores</a></li>
 <li><a href="#recursos">Recursos</a></li>
 <li><a href="#nosotros">Sobre Nosotros</a></li>
+<li><a href="#faq">FAQ</a></li>
 <li><a href="#contacto" class="btn btn-primary">Agenda una Cita</a></li>
 </ul>
 <div class="mobile-toggle" id="mobileToggle">
@@ -860,7 +930,8 @@ EMPORIUM IA
 <h2>Nuestras Soluciones</h2>
 <p>Automatizaciones diseñadas para potenciar tu negocio</p>
 </div>
-<div class="services-grid">
+<div class="services-container">
+<div class="services-row">
 <div class="service-card">
 <div class="service-icon">
 <i class="fas fa-cogs"></i>
@@ -885,6 +956,8 @@ EMPORIUM IA
 <p>Campañas personalizadas, segmentación inteligente y análisis predictivo para maximizar tu ROI.</p>
 <a href="#contacto" class="btn btn-outline">Agenda una Cita</a>
 </div>
+</div>
+<div class="services-row">
 <div class="service-card">
 <div class="service-icon">
 <i class="fas fa-robot"></i>
@@ -892,6 +965,15 @@ EMPORIUM IA
 <h3>Asistentes virtuales</h3>
 <p>Chatbots avanzados con RAG que resuelven consultas, gestionan reservas y cualifican leads 24/7.</p>
 <a href="#contacto" class="btn btn-outline">Agenda una Cita</a>
+</div>
+<div class="service-card">
+<div class="service-icon">
+<i class="fas fa-chart-line"></i>
+</div>
+<h3>Análisis predictivo</h3>
+<p>Anticipamos tendencias de mercado y comportamiento del cliente para tomar decisiones estratégicas con ventaja competitiva.</p>
+<a href="#contacto" class="btn btn-outline">Agenda una Cita</a>
+</div>
 </div>
 </div>
 </div>
@@ -1029,6 +1111,71 @@ EMPORIUM IA
 </div>
 </div>
 </section>
+<!-- FAQ Section -->
+<section class="section faq-section" id="faq">
+<div class="container">
+<div class="section-title">
+<h2>Preguntas Frecuentes</h2>
+<p>Encuentra respuestas a las dudas más comunes sobre nuestros servicios</p>
+</div>
+<div class="faq-container">
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFAQ(this)">
+¿Qué tipo de empresas pueden beneficiarse de sus servicios?
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="faq-answer">
+<p>Trabajamos principalmente con pymes y medianas empresas de diversos sectores. Nuestras soluciones están diseñadas para ser escalables y adaptarse a las necesidades específicas de cada negocio, independientemente de su tamaño o industria.</p>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFAQ(this)">
+¿Cuánto tiempo tarda en implementarse una solución?
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="faq-answer">
+<p>El tiempo de implementación varía según la complejidad del proyecto, pero generalmente nuestras soluciones se implementan en un plazo de 2 a 6 semanas. Trabajamos con metodologías ágiles para garantizar entregas rápidas y resultados tangibles desde el primer día.</p>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFAQ(this)">
+¿Necesito conocimientos técnicos para usar sus servicios?
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="faq-answer">
+<p>No necesitas conocimientos técnicos previos. Nuestras soluciones están diseñadas para ser intuitivas y fáciles de usar. Además, te proporcionamos formación personalizada y soporte continuo para garantizar que puedas sacar el máximo provecho de nuestras herramientas.</p>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFAQ(this)">
+¿Ofrecen soporte después de la implementación?
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="faq-answer">
+<p>Sí, ofrecemos soporte técnico continuo y acompañamiento post-implementación. Nuestro equipo está disponible para resolver tus dudas, realizar ajustes y ayudarte a optimizar el uso de nuestras soluciones. Además, realizamos actualizaciones periódicas para mantener todo al día con las últimas tecnologías.</p>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFAQ(this)">
+¿Cuál es el coste de sus servicios?
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="faq-answer">
+<p>El coste depende de las necesidades específicas de tu empresa y la solución que elijas. Ofrecemos planes personalizados y transparentes sin costes ocultos. Te invitamos a contactarnos para recibir un presupuesto detallado adaptado a tu negocio. Además, muchas de nuestras soluciones incluyen un periodo de prueba gratuito.</p>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFAQ(this)">
+¿Trabajan con empresas de cualquier tamaño?
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="faq-answer">
+<p>Sí, trabajamos con empresas de todos los tamaños, desde startups hasta medianas empresas. Nuestras soluciones son modulares y escalables, lo que significa que pueden crecer contigo a medida que tu negocio se expande. Nos adaptamos a tus necesidades actuales y futuras.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
 <!-- Contacto -->
 <section class="section" id="contacto">
 <div class="container">
@@ -1116,6 +1263,7 @@ EMPORIUM IA
 <li><a href="#nosotros">Sobre Nosotros</a></li>
 <li><a href="#sectores">Sectores</a></li>
 <li><a href="#recursos">Recursos</a></li>
+<li><a href="#faq">FAQ</a></li>
 <li><a href="#contacto">Contacto</a></li>
 </ul>
 </div>
@@ -1178,6 +1326,21 @@ navLinks.classList.remove('active');
 mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
 });
 });
+// FAQ Toggle Function
+function toggleFAQ(element) {
+const answer = element.nextElementSibling;
+const isActive = element.classList.contains('active');
+// Close all other FAQs
+document.querySelectorAll('.faq-question').forEach(q => {
+q.classList.remove('active');
+q.nextElementSibling.classList.remove('show');
+});
+// Toggle current FAQ
+if (!isActive) {
+element.classList.add('active');
+answer.classList.add('show');
+}
+}
 // Form submission
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
